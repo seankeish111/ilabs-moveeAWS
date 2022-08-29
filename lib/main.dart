@@ -37,8 +37,20 @@ class TodosPage extends StatefulWidget {
 }
 
 class _TodosPageState extends State<TodosPage> {
+  // loading ui state - initially set to a loading state
+  bool _isLoading = true;
+
+  // list of Todos - initially empty
+  List<Todo> _todos = [];
+
+  // amplify plugins
+  final _dataStorePlugin = AmplifyDataStore(modelProvider: ModelProvider.instance);
+
   @override
   void initState() {
+
+    // kick off app initialization
+    _initializeApp();
     // to be filled in a later step
     super.initState();
   }
@@ -50,10 +62,40 @@ class _TodosPageState extends State<TodosPage> {
   }
 
   Future<void> _initializeApp() async {
+
+    // configure Amplify
+    await _configureAmplify();
+
+    // after configuring Amplify, update loading ui state to loaded state
+    setState(() {
+      _isLoading = false;
+    });
+
+
     // to be filled in a later step
   }
 
   Future<void> _configureAmplify() async {
+
+
+    try {
+
+      // add Amplify plugins
+      await Amplify.addPlugins([_dataStorePlugin]);
+
+      // configure Amplify
+      //
+      // note that Amplify cannot be configured more than once!
+      await Amplify.configure(amplifyconfig);
+    } catch (e) {
+
+      // error handling can be improved for sure!
+      // but this will be sufficient for the purposes of this tutorial
+      print('An error occurred while configuring Amplify: $e');
+    }
+
+
+
     // to be filled in a later step
   }
 
@@ -63,10 +105,10 @@ class _TodosPageState extends State<TodosPage> {
       appBar: AppBar(
         title: const Text('My Todo List'),
       ),
-      body: const Center(child: CircularProgressIndicator()),
-      // body: _isLoading
-      //     ? Center(child: CircularProgressIndicator())
-      //     : TodosList(todos: _todos),
+
+      body: _isLoading
+          ? Center(child: CircularProgressIndicator())
+          : TodosList(todos: _todos),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           Navigator.push(
