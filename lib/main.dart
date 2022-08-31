@@ -6,12 +6,15 @@ import 'package:flutter/material.dart';
 
 // amplify packages we will need to use
 import 'package:amplify_flutter/amplify_flutter.dart';
+import 'package:amplify_api/amplify_api.dart';
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+
 import 'package:amplify_datastore/amplify_datastore.dart';
 
 // amplify configuration and models that should have been generated for you
+
 import 'amplifyconfiguration.dart';
-import 'package:amplify_api/amplify_api.dart';
-import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+// import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'models/ModelProvider.dart';
 import 'models/Todo.dart';
 
@@ -52,8 +55,8 @@ class _TodosPageState extends State<TodosPage> {
   // amplify plugins
   final AmplifyDataStore _dataStorePlugin =
       AmplifyDataStore(modelProvider: ModelProvider.instance);
-  final AmplifyAPI _apiPlugin = AmplifyAPI();
-  final AmplifyAuthCognito _authPlugin = AmplifyAuthCognito();
+  // final AmplifyAPI _apiPlugin = AmplifyAPI();
+  // final AmplifyAuthCognito _authPlugin = AmplifyAuthCognito();
 
 
 
@@ -97,7 +100,7 @@ class _TodosPageState extends State<TodosPage> {
     try {
 
       // add Amplify plugins
-      await Amplify.addPlugins([_dataStorePlugin, _apiPlugin, _authPlugin]);
+      await Amplify.addPlugins([_dataStorePlugin]);
 
 
       // configure Amplify
@@ -215,11 +218,11 @@ class TodoItem extends StatelessWidget {
                 ],
               ),
             ),
-            Icon(
-                todo.isComplete
-                    ? Icons.check_box
-                    : Icons.check_box_outline_blank,
-                size: iconSize),
+            // Icon(
+            //     todo.isComplete
+            //         ? Icons.check_box
+            //         : Icons.check_box_outline_blank,
+            //     size: iconSize),
           ]),
         ),
       ),
