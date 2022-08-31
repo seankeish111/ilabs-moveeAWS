@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> crudOps
 # intelbis_removalist_platform
 
 A new Flutter project.
@@ -15,6 +18,9 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+<<<<<<< HEAD
 =======
 # ilabs-moveeAWS
 >>>>>>> 6efc88b5d8c4286d550d3e5291880dc9f59c85f1
+=======
+>>>>>>> crudOps
