@@ -124,7 +124,7 @@ class _TodosPageState extends State<TodosPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Todo List'),
+        title: const Text('Enquiries'),
       ),
 
       body: _isLoading
@@ -137,9 +137,9 @@ class _TodosPageState extends State<TodosPage> {
             MaterialPageRoute(builder: (context) => const AddTodoForm()),
           );
         },
-        tooltip: 'Add Todo',
+        tooltip: 'Make an enquiry',
         label: Row(
-          children: const [Icon(Icons.add), Text('Add todo')],
+          children: const [Icon(Icons.add), Text('Enquire')],
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
