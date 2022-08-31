@@ -10,6 +10,11 @@
       "StackName": "amplify-ilabsmovee-ilabsmovee-201630",
       "StackId": "arn:aws:cloudformation:ap-southeast-2:952134732999:stack/amplify-ilabsmovee-ilabsmovee-201630/7cacb7e0-26ba-11ed-bf87-02062fd6829c",
       "AmplifyAppId": "d3ikasopyyq30y"
+    },
+    "categories": {
+      "auth": {
+        "ilabsmovee6a8ba332": {}
+      }
     }
   }
 }
