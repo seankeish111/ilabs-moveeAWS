@@ -10,6 +10,8 @@ import 'package:amplify_datastore/amplify_datastore.dart';
 
 // amplify configuration and models that should have been generated for you
 import 'amplifyconfiguration.dart';
+import 'package:amplify_api/amplify_api.dart';
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'models/ModelProvider.dart';
 import 'models/Todo.dart';
 
@@ -48,7 +50,12 @@ class _TodosPageState extends State<TodosPage> {
   List<Todo> _todos = [];
 
   // amplify plugins
-  final _dataStorePlugin = AmplifyDataStore(modelProvider: ModelProvider.instance);
+  final AmplifyDataStore _dataStorePlugin =
+      AmplifyDataStore(modelProvider: ModelProvider.instance);
+  final AmplifyAPI _apiPlugin = AmplifyAPI();
+  final AmplifyAuthCognito _authPlugin = AmplifyAuthCognito();
+
+
 
   @override
   void initState() {
@@ -90,7 +97,8 @@ class _TodosPageState extends State<TodosPage> {
     try {
 
       // add Amplify plugins
-      await Amplify.addPlugins([_dataStorePlugin]);
+      await Amplify.addPlugins([_dataStorePlugin, _apiPlugin, _authPlugin]);
+
 
       // configure Amplify
       //
@@ -207,11 +215,11 @@ class TodoItem extends StatelessWidget {
                 ],
               ),
             ),
-            // Icon(
-            //     todo.isComplete
-            //         ? Icons.check_box
-            //         : Icons.check_box_outline_blank,
-            //     size: iconSize),
+            Icon(
+                todo.isComplete
+                    ? Icons.check_box
+                    : Icons.check_box_outline_blank,
+                size: iconSize),
           ]),
         ),
       ),
@@ -240,7 +248,8 @@ class _AddTodoFormState extends State<AddTodoForm> {
 
     final newTodo = Todo(
       name: name,
-      description: description.isNotEmpty ? description : null, isComplete: 'false',
+      description: description.isNotEmpty ? description : null,
+      isComplete: 'true',
 
     );
 
@@ -253,12 +262,6 @@ class _AddTodoFormState extends State<AddTodoForm> {
     } catch (e) {
       print('An error occurred while saving Todo: $e');
     }
-
-
-
-
-
-
     // to be filled in a later step
   }
 
