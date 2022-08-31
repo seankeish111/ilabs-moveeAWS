@@ -22,6 +22,7 @@ void main() {
   runApp(const MyApp());
 }
 
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -55,8 +56,8 @@ class _TodosPageState extends State<TodosPage> {
   // amplify plugins
   final AmplifyDataStore _dataStorePlugin =
       AmplifyDataStore(modelProvider: ModelProvider.instance);
-  // final AmplifyAPI _apiPlugin = AmplifyAPI();
-  // final AmplifyAuthCognito _authPlugin = AmplifyAuthCognito();
+  final AmplifyAPI _apiPlugin = AmplifyAPI();
+  final AmplifyAuthCognito _authPlugin = AmplifyAuthCognito();
 
 
 
@@ -100,7 +101,7 @@ class _TodosPageState extends State<TodosPage> {
     try {
 
       // add Amplify plugins
-      await Amplify.addPlugins([_dataStorePlugin]);
+      await Amplify.addPlugins([_dataStorePlugin, _apiPlugin, _authPlugin]);
 
 
       // configure Amplify
